@@ -1,0 +1,47 @@
+body {
+
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#myH1 {
+    text-align: center;
+    padding: 10px 20px;
+}
+#arrayContainer {
+    display: flex;
+    justify-content:center;
+    align-items: flex-end;
+    height: 200px;
+
+}
+#buttonContainer {
+    text-align: center;
+    padding: 10px 20px;
+}
+.buttons {
+    cursor: pointer;
+    padding: auto;
+    font-size: auto;
+    border-radius: 10px;
+}
+.buttons:hover{
+    background-color: antiquewhite;
+}
+
+.bar {
+    width: 25px;
+    height:5px; 
+    
+    background-color: black;
+    margin-right: auto;
+    margin: 1px;
+  }
+
+.compare {
+    background-color: red;
+}
+
+.sorted {
+    background-color: green;
+}
