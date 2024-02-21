@@ -1,83 +1,87 @@
 
 
-async function mergeSort(randomIntegerArray){
+async function mergeSort(arr){
     
 
-    if(randomIntegerArray.length <= 1){
-        return randomIntegerArray;
+    if(arr.length <= 1){
+        return arr;
     }
-    
-    let mid = Math.floor(randomIntegerArray.length/2);
-    
+
     
     
-    let leftArray =  await mergeSort(randomIntegerArray.slice(0,mid));
+    let mid = Math.floor(arr.length/2);
     
     
-    let rightArray = await mergeSort(randomIntegerArray.slice(mid));
+    
+    let leftArray =  await mergeSort(arr.slice(0,mid));
     
     
-    return merge(randomIntegerArray,leftArray,rightArray);
+    let rightArray = await mergeSort(arr.slice(mid));
+    
+    displayArray(randomIntegerArray);
+    return await merge(arr,leftArray,rightArray);
 }
 
 
-async function merge(randomIntegerArray,leftArray,rightArray){
+async function merge(arr,leftArray,rightArray){
     let i = j = k = 0;
-    displayArray(leftArray.concat(rightArray));
+    const result = [];
     
 
     while((i < leftArray.length) && (j < rightArray.length)) {
-        displayArray(leftArray.concat(rightArray));
-         
-        
         
         if (leftArray[i] <= rightArray[j]){
-                
-                displayBars();
-                await delay(20);
-                randomIntegerArray[k] = leftArray[i];
+                result.push(leftArray[i]);
+                arr[k] = leftArray[i];
                 i++;
-                displayBars(k,'compare');
-                await delay(20);
                 
         }
         
         else {
             
-            displayBars();
-            await delay(20);
-            randomIntegerArray[k] = rightArray[j];
+            result.push(rightArray[j]);
+            arr[k] = rightArray[j];
             j++; 
-            displayBars(k,'compare');
-            await delay(20);
-            
                    
     }
+    
     k++;
-    displayBars(k,'sorted');
-    await delay(20);
-    
-    
+    //displayArray(result);
+    displayArray(arr,k,'sorted');
+    await delay(100);
 }
 
 
 
     while (i < leftArray.length){
-        randomIntegerArray[k] = leftArray[i];
+        result.push(leftArray[i]);
+        arr[k] = leftArray[i];
         i++;
         k++;
+        //displayArray(result);
+        displayArray(arr,k,'compare');
+        await delay(100);
         
         
     }
     
     while (j < rightArray.length){
-        randomIntegerArray[k] = rightArray[j];
+        result.push(rightArray[j]);
+        arr[k] = rightArray[j];
         j++;
         k++;
+        //displayArray(result);
+        displayArray(arr,k,'compare');
+        await delay(100);
         
     }
-displayBars();
-return randomIntegerArray;
+//displayArray(result);
+displayArray(arr,k,'sorted');
+await delay(100);
+
+
+displayArray(arr);
+return arr;
     
 }
 
