@@ -4,6 +4,7 @@ const resetButton = document.getElementById("reSet");
 const bubbleSortButton = document.getElementById("bubbleSort");
 const arrayContainer = document.getElementById("arrayContainer");
 const insertionSortButton = document.getElementById("insertionSort");
+const quickSortButton = document.getElementById("quickSort");
 
 let randomIntegerArray = [];
 
@@ -12,19 +13,23 @@ let randomIntegerArray = [];
 
 generateButton.addEventListener("click",generateArray);
 resetButton.addEventListener("click",resetArray);
-mergeSortButton.addEventListener("click",function() { 
-    
-    if(randomIntegerArray.length > 0){
-        mergeSort(randomIntegerArray);
-        
-
-    } else {
-        console.log("please genearate an array first");
-    }
+mergeSortButton.addEventListener("click",async function() { 
+    displayArray(randomIntegerArray);
+    await mergeSort(randomIntegerArray);
+    displayArray(randomIntegerArray);
 });
 
 bubbleSortButton.addEventListener("click",bubbleSort);
+
 insertionSortButton.addEventListener("click",insertionSort);
+
+quickSortButton.addEventListener("click",async function() {
+
+    displayArray(randomIntegerArray);
+    await quickSort(randomIntegerArray);
+    displayArray(randomIntegerArray);
+    
+});
 
 
 
@@ -57,7 +62,7 @@ function resetArray() {
 }
 
 
-function display(num, className){
+function display(num){
     
     const barHeight = num * 2;
     const bar = document.createElement("div");
@@ -65,7 +70,7 @@ function display(num, className){
     bar.style.height = barHeight + "px";
     bar.style.backgroundColor = color;
     arrayContainer.appendChild(bar);
-    arrayContainer.childNodes[num].className = className;
+    
 } 
 
 
@@ -88,14 +93,17 @@ function displayBars(index,className){
 }
 
 
-function displayArray(array){
+function displayArray(array,index,className){
     arrayContainer.innerHTML = "";
-    //console.log("display Bar",array);
+    
     for(let i=0; i<array.length;i++){
         const barHeight = array[i]*2;
         const bar = document.createElement("div");
         bar.className = "bar";
         bar.style.height = barHeight + "px";
+        if(index && index == i){
+            bar.style.backgroundColor = className == 'compare'? "red":"green";
+        }
         arrayContainer.appendChild(bar);
     }
     
