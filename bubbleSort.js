@@ -23,3 +23,7 @@ async function bubbleSort(){
     }
     displayBars();
 }
+
+{
+    
+}
